@@ -127,8 +127,7 @@ main,section,header,nav,div{min-width:0}
 .dashboard-layout input,.dashboard-layout select{min-height:44px}
 .dashboard-layout select option{background:rgb(var(--ll-surface));color:var(--ll-text-primary)}
 .loading-shell{padding-top:clamp(24px,8vh,80px)!important}
-.light .dashboard-nav{background-color:rgb(var(--ll-surface) / .94);border-color:rgb(var(--ll-border))}
-.light .dashboard-nav button:not(.bg-accent){color:var(--ll-text-secondary)}
+.light .dashboard-nav{background-color:transparent!important;border-color:transparent!important;backdrop-filter:none}
 .light .dashboard-nav button:not(.bg-accent):hover{color:var(--ll-text-primary)}
 .light .dashboard-header{box-shadow:0 8px 28px rgb(37 54 84 / .08)}
 .light .dashboard-layout section .bg-panel{box-shadow:var(--ll-shadow)}
