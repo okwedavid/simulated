@@ -113,7 +113,7 @@ main,section,header,nav,div{min-width:0}
 .welcome-access button[role="tab"][aria-selected="false"]:hover{color:var(--ll-text-primary)}
 .welcome-access input,.dashboard-layout input,.dashboard-layout select{min-height:44px;background-color:rgb(var(--ll-input));color:var(--ll-text-primary);border-color:rgb(var(--ll-border))}
 .welcome-access input:focus,.dashboard-layout input:focus,.dashboard-layout select:focus{border-color:rgb(var(--ll-focus))}
-.dashboard-shell{min-height:100svh;background-color:rgb(var(--ll-page));background-image:linear-gradient(to bottom,rgb(var(--ll-page) / .38),rgb(var(--ll-page) / .96) 460px),url("/images/ledger-flow.svg");background-size:100% 500px,100% 500px;background-position:center top;background-repeat:no-repeat}
+.dashboard-shell{min-height:100svh;background-color:rgb(var(--ll-page))}
 .dashboard-header{border-color:rgb(var(--ll-border) / .76)!important;box-shadow:0 8px 28px rgb(0 0 0 / .12)}
 .dashboard-header>div{min-height:72px}
 .dashboard-layout{padding-top:clamp(20px,4vh,42px)!important;padding-bottom:56px!important}
