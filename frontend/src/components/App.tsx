@@ -4,8 +4,8 @@ import {motion,AnimatePresence} from "framer-motion";
 import {Wallet,Send,History,BarChart3,LogOut,ShieldCheck,ArrowUpRight,ArrowDownLeft,Search,RefreshCw,X,CheckCircle2,AlertTriangle,BookOpen} from "lucide-react";
 import {api,naira,User,Transfer} from "@/lib/api";
 
-const Btn=(p:any)=><button {...p} className={"rounded-xl bg-accent px-4 py-2.5 font-semibold hover:bg-teal-500 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-accent2 "+(p.className||"")}/>;
-const Input=(p:any)=><input {...p} className="w-full bg-[#0B1020] border border-line rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-accent" />;
+const Btn=(p:any)=><button {...p} className={"rounded-xl bg-accent px-4 py-2.5 font-semibold hover:bg-accent-hover disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-focus "+(p.className||"")}/>;
+const Input=(p:any)=><input {...p} className={"w-full bg-input border border-line rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-focus "+(p.className||"")} />;
 const Card=(p:any)=><div className="bg-panel border border-line rounded-2xl p-5 shadow-xl">{p.children}</div>;
 
 export default function App(){
@@ -29,15 +29,15 @@ export default function App(){
  useEffect(()=>{ if(user) refresh(user).catch(e=>notify(e.message)); },[user?.id,page,statusF,dirF]); // eslint-disable-line
  async function enter(fn:()=>Promise<any>){ try{ const r=await fn(); sessionStorage.setItem("ledgerlab_tab","1"); setUser(r.user||r); setView("dashboard"); notify("Welcome to LedgerLab — you are now in the dashboard."); return null; }catch(e:any){ notify(e.message); return e.message as string; } }
  async function logout(){ await api.logout().catch(()=>{}); sessionStorage.removeItem("ledgerlab_tab"); setUser(null); setSummary(null); }
- if(loading) return <main className="p-8 max-w-6xl mx-auto"><div className="animate-pulse space-y-4"><div className="h-10 bg-panel rounded"/><div className="h-64 bg-panel rounded-2xl"/></div></main>;
+ if(loading) return <main className="loading-shell p-8 max-w-6xl mx-auto"><div className="animate-pulse space-y-4"><div className="h-10 bg-panel rounded"/><div className="h-64 bg-panel rounded-2xl"/></div></main>;
  if(!user) return <><Welcome demo={demo} waking={waking} demoError={demoError} theme={theme} toggleTheme={toggleTheme} enter={enter} notify={notify} toast={toast}/>{tour>=0&&<Tour step={tour} setStep={setTour} close={()=>{localStorage.setItem("ledgerlab_tour_done","1"); setTour(-1);}}/>}</>;
- return <main className="min-h-screen">
-  <header className="sticky top-0 bg-ink/90 backdrop-blur border-b border-line z-10"><div className="max-w-6xl mx-auto px-4 py-3 flex flex-wrap gap-3 items-center justify-between">
+ return <main className="dashboard-shell min-h-screen">
+  <header className="dashboard-header sticky top-0 bg-ink/90 backdrop-blur border-b border-line z-10"><div className="max-w-6xl mx-auto px-4 py-3 flex flex-wrap gap-3 items-center justify-between">
    <div className="flex items-center gap-3"><div className="bg-accent p-2 rounded-xl"><BookOpen size={20}/></div><div><b className="text-lg">LedgerLab</b><p className="text-xs text-slate-400">Simulated wallet & transaction ledger</p></div></div>
    <button onClick={toggleTheme} aria-label="Toggle light or dark mode" className="border border-line rounded-lg px-3 py-2 text-sm">{theme==="dark"?"☀️ Light":"🌙 Dark"}</button><div className="flex items-center gap-3 text-sm"><span>{user.display_name} <span className="text-slate-400">@{user.username}{user.is_demo?" · DEMO":""}</span></span><button aria-label="Log out" onClick={logout} className="flex gap-1 items-center border border-line rounded-lg px-3 py-2"><LogOut size={16}/> Log out</button></div>
   </div></header>
-  <div className="max-w-6xl mx-auto px-4 py-6 grid md:grid-cols-[200px_1fr] gap-6">
-   <nav className="flex md:flex-col gap-2" aria-label="Main">
+  <div className="dashboard-layout max-w-6xl mx-auto px-4 py-6 grid md:grid-cols-[200px_1fr] gap-6">
+   <nav className="dashboard-nav flex md:flex-col gap-2" aria-label="Main">
     {[["dashboard",Wallet,"Dashboard"],["send",Send,"Send money"],["history",History,"History"],["analytics",BarChart3,"Analytics"]].map(([v,I,l]:any)=><button key={v} onClick={()=>setView(v)} className={"flex items-center gap-2 px-3 py-2.5 rounded-xl text-left "+(view===v?"bg-accent":"border border-line")}><I size={18}/>{l}</button>)}
    </nav>
    <section>
@@ -88,9 +88,9 @@ function Welcome({demo,waking,demoError,theme,toggleTheme,enter,notify,toast}:{d
  const set=(k:string,v:string)=>setForm({...form,[k]:v});
  async function run(id:string,fn:()=>Promise<any>){ setError(""); setBusy(id); const err=await enter(fn); if(err) setError(err); setBusy(""); }
  const initials=(n:string)=>n.split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase();
- return (<main className="min-h-screen lg:grid lg:grid-cols-[1.05fr_1fr]">
+ return (<main className="welcome-shell min-h-screen lg:grid lg:grid-cols-[1.05fr_1fr]">
   {/* Left: brand / story panel */}
-  <section className="relative overflow-hidden px-6 py-10 lg:px-14 lg:py-14 bg-gradient-to-br from-[#141B36] via-ink to-[#1E1440]">
+  <section className="welcome-story relative overflow-hidden px-6 py-10 lg:px-14 lg:py-14">
    <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-accent/25 blur-3xl" aria-hidden="true"/><div className="absolute bottom-0 left-1/3 h-56 w-56 rounded-full bg-accent2/15 blur-3xl" aria-hidden="true"/>
    <div className="relative flex items-center justify-between"><div className="flex gap-3 items-center"><div className="bg-accent p-2.5 rounded-2xl shadow-lg shadow-accent/40"><BookOpen/></div><div><h1 className="text-2xl font-bold leading-none">LedgerLab</h1><p className="text-xs text-slate-400 mt-1">Simulated wallet &amp; transaction ledger</p></div></div></div>
    <h2 className="relative text-4xl lg:text-5xl font-extrabold leading-tight mt-14">See how digital money <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent2">actually moves.</span></h2>
@@ -111,7 +111,7 @@ function Welcome({demo,waking,demoError,theme,toggleTheme,enter,notify,toast}:{d
    </ul>
   </section>
   {/* Right: access panel */}
-  <section className="px-5 py-10 lg:px-12 flex items-start lg:items-center justify-center">
+  <section className="welcome-access px-5 py-10 lg:px-12 flex items-start lg:items-center justify-center">
    <div className="w-full max-w-md">
     <h3 className="text-2xl font-bold">{mode==="demo"?"Enter the demo":mode==="register"?"Create your account":"Welcome back"}</h3>
     <p className="text-sm text-slate-400 mt-1">{mode==="demo"?"One click, no password, pick an identity and present both sides of a transfer.":mode==="register"?"Your wallet starts at ₦0.00. Ask a demo account to send you funds.":"Log in with your username, email or phone."}</p>

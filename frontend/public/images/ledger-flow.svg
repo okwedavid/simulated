@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" fill="none">
+  <defs>
+    <linearGradient id="night" x1="170" y1="72" x2="1570" y2="1176" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10172e"/>
+      <stop offset=".52" stop-color="#101d38"/>
+      <stop offset="1" stop-color="#0b2735"/>
+    </linearGradient>
+    <radialGradient id="indigo" cx="0" cy="0" r="1" gradientTransform="matrix(650 395 -385 634 1370 178)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7768ff" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#7768ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mint" cx="0" cy="0" r="1" gradientTransform="matrix(600 310 -282 547 301 940)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#35cfbd" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#35cfbd" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="flow" x1="206" y1="885" x2="1596" y2="378" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#43d6c2" stop-opacity="0"/>
+      <stop offset=".48" stop-color="#58d3da" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#9584ff" stop-opacity=".05"/>
+    </linearGradient>
+    <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse">
+      <path d="M72 0H0v72" stroke="#d6e4ff" stroke-opacity=".07"/>
+      <circle cx="1" cy="1" r="1.5" fill="#d6e4ff" fill-opacity=".14"/>
+    </pattern>
+    <filter id="blur" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="34"/>
+    </filter>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="12" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <path fill="url(#night)" d="M0 0h1800v1200H0z"/>
+  <path fill="url(#indigo)" d="M0 0h1800v1200H0z"/>
+  <path fill="url(#mint)" d="M0 0h1800v1200H0z"/>
+  <path fill="url(#grid)" d="M0 0h1800v1200H0z"/>
+  <g opacity=".38" stroke="#b7c9ff" stroke-width="1.5">
+    <ellipse cx="1242" cy="524" rx="570" ry="240" transform="rotate(-24 1242 524)"/>
+    <ellipse cx="1242" cy="524" rx="660" ry="316" transform="rotate(-24 1242 524)" stroke-opacity=".56"/>
+    <ellipse cx="1242" cy="524" rx="754" ry="392" transform="rotate(-24 1242 524)" stroke-opacity=".34"/>
+    <ellipse cx="537" cy="777" rx="390" ry="182" transform="rotate(-24 537 777)" stroke="#61decf" stroke-opacity=".58"/>
+  </g>
+  <path d="M92 870c236 67 375-170 594-106 225 66 240 250 473 180 199-60 275-294 549-325" stroke="url(#flow)" stroke-width="3"/>
+  <path d="M135 920c235 67 375-170 594-106 225 66 240 250 473 180 199-60 275-294 549-325" stroke="url(#flow)" stroke-opacity=".42" stroke-width="1.5"/>
+  <g filter="url(#glow)">
+    <circle cx="685" cy="764" r="7" fill="#77e3d5"/>
+    <circle cx="1160" cy="924" r="7" fill="#8ea2ff"/>
+    <circle cx="1474" cy="627" r="9" fill="#b1a4ff"/>
+  </g>
+  <g filter="url(#blur)" opacity=".34">
+    <ellipse cx="1425" cy="208" rx="184" ry="60" fill="#7163ff"/>
+    <ellipse cx="315" cy="1026" rx="193" ry="55" fill="#28c8b6"/>
+  </g>
+</svg>
